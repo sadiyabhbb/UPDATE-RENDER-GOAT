@@ -28,7 +28,7 @@ module.exports = {
       api.setMessageReaction("❌", event.messageID, (err) => {}, true);
     }
     try {
-      api.setMessageReaction("⏳", event.messageID, (err) => {}, true);
+      api.setMessageReaction("🐥", event.messageID, (err) => {}, true);
       const { data } = await axios.get(`${await baseApiUrl()}/alldl?url=${encodeURIComponent(dipto)}`);
       const filePath = __dirname + `/cache/vid.mp4`;
       if(!fs.existsSync(filePath)){
