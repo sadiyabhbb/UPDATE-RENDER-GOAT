@@ -3,13 +3,13 @@ const axios = require("axios");
 module.exports = {
   config: {
     name: "sms",
-    version: "1.0",
+    version: "1.3",
     author: "LIKHON AHMED",
     countDown: 5,
-    role: 0,
+    role: 2,
     description: {
       en: "Send OTP SMS or check API status",
-      bn: "OTP SMS পাঠানো বা API চেক করা"
+      bn: "OTP SMS Sending API Check"
     },
     category: "utility",
     guide: {
@@ -20,32 +20,41 @@ module.exports = {
 
   onStart: async function ({ message, args }) {
     if (args.length < 2) {
-      return message.reply("❌ ব্যবহার: /sms <number> <count> অথবা /sms <apiname> <number> <count>");
+      return message.reply("Uses : /sms <number> <count> Or /sms <apiname> <number> <count>");
     }
 
     let url = "";
+    let number = "";
+    let count = 1;
+
     if (args.length === 2) {
-      // case: /sms number count
-      const [number, count] = args;
+      [number, count] = args;
       url = `https://update-bomb.onrender.com/ck?phone=${number}&count=${count}`;
     } else if (args.length === 3) {
-      // case: /sms apiname number count
-      const [api, number, count] = args;
+      const [api, num, cnt] = args;
+      number = num;
+      count = cnt;
       url = `https://update-bomb.onrender.com/check?api=${api}&phone=${number}&count=${count}`;
     }
 
     try {
-      const res = await axios.get(url);
-      const data = res.data;
+      await axios.get(url);
 
-      // output format
-      const output = {
-        number: data.number || args[1],
-        OTP: data.OTP || 1,
-        author: "LIKHON AHMED"
-      };
+    
+      const hideNumber = number.replace(/(\d{5})(\d{4})(\d?)/, (_, p1, p2, p3) => {
+        return p1 + "****" + (p3 || "");
+      });
 
-      return message.reply("```json\n" + JSON.stringify(output, null, 2) + "\n```");
+    
+      const output = `{
+  "number": "${hideNumber}",
+
+  "OTP": ${parseInt(count)},
+
+  "author": "LIKHON AHMED"
+}`;
+
+      return message.reply(output);
     } catch (e) {
       return message.reply("⚠️ API call failed: " + e.message);
     }
