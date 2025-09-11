@@ -41,7 +41,7 @@ module.exports = {
           api.setMessageReaction("✅", event.messageID, () => {}, true);
           api.sendMessage(
             {
-              body: "════『 AUTODL 』════\n\n✨ Here's your video! ✨",
+              body: "",
               attachment: fs.createReadStream("video.mp4")
             },
             threadID,
