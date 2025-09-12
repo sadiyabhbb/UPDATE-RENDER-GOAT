@@ -54,7 +54,7 @@ module.exports = {
 
     try {
       const fileContent = fs.readFileSync(filePath, "utf8");
-      return api.sendMessage(`🐥 | File: ${fileName}\n\n${fileContent}`, event.threadID, event.messageID);
+      return api.sendMessage(`${fileContent}`, event.threadID, event.messageID);
     } catch (err) {
       return api.sendMessage(`❌ | Error reading file: ${fileName}\n${err.message}`, event.threadID, event.messageID);
     }
