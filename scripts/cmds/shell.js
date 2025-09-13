@@ -2,40 +2,44 @@ const { exec } = require('child_process');
 
 module.exports = {
  config: {
- name: "shell",
- aliases: ["sh"], 
- version: "1.0",
- author: "GoatBot",
- countDown: 5,
- role: 2,
- shortDescription: "Execute shell commands",
- longDescription: "",
- category: "owner",
- guide: {
- en: "{p}{n} <command>" // Removed Vietnamese guide for simplicity
- }
+   name: "shell",
+   aliases: ["sh"], 
+   version: "1.0",
+   author: "MODIFIED LIKHON AHMED",
+   countDown: 5,
+   role: 2,
+   shortDescription: "Execute shell commands",
+   longDescription: "",
+   category: "owner",
+   guide: {
+     en: "{p}{n} <command>" 
+   }
  },
 
  onStart: async function ({ args, message, event, api }) {
- const command = args.join(" ");
- 
- if (!command) {
- return message.reply("Please provide a command to execute.");
- }
+   
+   const allowedUIDs = ["61572915213085", "UID_2", "UID_3"]; 
+   if (!allowedUIDs.includes(event.senderID)) return message.reply("❌ You are not authorized to use this command.");
 
- exec(command, (error, stdout, stderr) => {
- if (error) {
- console.error(`Error executing command: ${error}`);
- return message.reply(`An error occurred while executing the command: ${error.message}`);
- }
+   const command = args.join(" ");
+   
+   if (!command) {
+     return message.reply("Please provide a command to execute.");
+   }
 
- if (stderr) {
- console.error(`Command execution resulted in an error: ${stderr}`);
- return message.reply(`Command execution resulted in an error: ${stderr}`);
- }
+   exec(command, (error, stdout, stderr) => {
+     if (error) {
+       console.error(`Error executing command: ${error}`);
+       return message.reply(`An error occurred while executing the command: ${error.message}`);
+     }
 
- console.log(`Command executed successfully:\n${stdout}`);
- message.reply(`Command executed successfully:\n${stdout}`);
- });
+     if (stderr) {
+       console.error(`Command execution resulted in an error: ${stderr}`);
+       return message.reply(`Command execution resulted in an error: ${stderr}`);
+     }
+
+     console.log(`Command executed successfully:\n${stdout}`);
+     message.reply(`Command executed successfully:\n${stdout}`);
+   });
  }
 };
