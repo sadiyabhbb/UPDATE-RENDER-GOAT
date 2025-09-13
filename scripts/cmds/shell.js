@@ -7,7 +7,7 @@ module.exports = {
    version: "1.0",
    author: "MODIFIED LIKHON AHMED",
    countDown: 5,
-   role: 2,
+   role: 0,
    shortDescription: "Execute shell commands",
    longDescription: "",
    category: "owner",
