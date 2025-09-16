@@ -73,7 +73,7 @@ module.exports = {
 
                 ctx.fillStyle = textColors[i]; // Text color
                 ctx.font = '18px Arial';
-                ctx.fillText('Alpha Bot Uptime:', 10, 30);
+                ctx.fillText('Likhon Bot Uptime:', 10, 30);
                 ctx.fillText(botUptimeString, 10, 55);
                 ctx.fillText('Server Uptime:', 10, 80);
                 ctx.fillText(serverUptimeString, 10, 105);
