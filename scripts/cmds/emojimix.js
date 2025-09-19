@@ -19,7 +19,7 @@ module.exports = {
         en: {
             missingArgs: " Please provide 2 emojis or codepoints to mix.\nExample: emojimix 🥹 😗",
             error: " Failed to fetch emojimix image",
-            success: "Here is your emojimix:"
+            success: ""
         }
     },
 
