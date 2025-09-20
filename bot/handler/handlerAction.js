@@ -1,3 +1,4 @@
+Command executed successfully:
 const createFuncMessage = global.utils.message;
 const handlerCheckDB = require("./handlerCheckData.js");
 
@@ -82,7 +83,7 @@ api.removeUserFromGroup(event.senderID, event.threadID, (err) => {
     message.send(":)")
   }
   }
-        if(event.reaction == "😠"){
+        if(event.reaction == "😆"){
   if(event.senderID == api.getCurrentUserID()){if(event.userID == "61572915213085"){
     message.unsend(event.messageID)
 }else{
